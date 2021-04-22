@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import lazyPlugin from 'vue3-lazy';
-import loadingDirective from './components/base/locading/directive';
+import loadingDirective from './components/base/loading/directive';
 
 // 引入全局样式文件
 import '@/assets/scss/index.scss';
