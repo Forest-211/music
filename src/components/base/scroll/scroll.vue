@@ -6,7 +6,7 @@
 
 <script>
 import { ref } from 'vue';
-import UseScroll from './use-scroll';
+import useScroll from './use-scroll';
 export default {
     name: 'scroll',
     props: {
@@ -14,10 +14,15 @@ export default {
             type: Boolean,
             default: true,
         },
+        probeType: {
+            type: Number,
+            default: 0,
+        },
     },
-    setup(props) {
+    emits: ['scroll'],
+    setup(props, { emit }) {
         const rootRef = ref(null);
-        UseScroll(rootRef, props);
+        useScroll(rootRef, props, emit);
 
         return {
             rootRef,
