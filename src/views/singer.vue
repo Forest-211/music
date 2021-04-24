@@ -14,14 +14,13 @@ export default {
     },
     data() {
         return {
-            singers: '',
+            singers: [],
             loadingText: '正在载入...',
         };
     },
     async created() {
         const res = await getSingerList();
         this.singers = res.singers;
-        console.log('res:', res);
     },
 };
 </script>
