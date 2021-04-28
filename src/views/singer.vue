@@ -1,12 +1,13 @@
 <template>
     <div class="singer" v-loading="!singers.length">
-        <index-list :data="singers"></index-list>
+        <index-list :data="singers" @select="selectSinger" />
+        <router-view :singer="selectedSinger" />
     </div>
 </template>
 
 <script>
-import { getSingerList } from '../service/singer';
-import IndexList from '../components/base/index-list/index-list';
+import { getSingerList } from '@/service/singer';
+import IndexList from '@/components/base/index-list/index-list';
 export default {
     name: 'singer',
     components: {
@@ -15,12 +16,20 @@ export default {
     data() {
         return {
             singers: [],
-            loadingText: '正在载入...',
+            selectedSinger: null,
         };
     },
     async created() {
         const res = await getSingerList();
         this.singers = res.singers;
+    },
+    methods: {
+        selectSinger(singer) {
+            this.selectedSinger = singer;
+            this.$router.push({
+                path: `/singer/${singer.mid}`,
+            });
+        },
     },
 };
 </script>
